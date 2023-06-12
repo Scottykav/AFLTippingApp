@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from datetime import datetime, timedelta
 from flask import Flask, jsonify, render_template, request, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
@@ -218,42 +219,24 @@ def load_games():
 
     return df, rounds
 
-@app.route('/games', defaults={'round_number': None})
-@app.route('/games/<int:round_number>')
+@app.route('/games', methods=['GET'])
 @login_required
-def get_games(round_number):
-    df, rounds = load_games()
-    today = datetime.now()
-    round_dates = df.groupby('round_number')['DateTime'].max()
-    current_round = round_dates[round_dates >= today].idxmin()
-    if round_number is None:
-        round_number = current_round
-    games = df[df['round_number'] == round_number].copy()  # Make a copy of the slice
+def get_games():
+    games, rounds = load_games()  # Get the games and rounds
+    games_dict = games.to_dict(orient='records')
 
-    # Convert 'int64' columns to 'int' or 'float'
-    for col in games.columns:
-        if games[col].dtype == 'int64':
-            games[col] = games[col].astype(int)
-        elif games[col].dtype == 'float64':
-            games[col] = games[col].astype(float)
-            
-    # Fetch the user's tips for the current round
-    tips = Tip.query.filter_by(user_id=current_user.id, round_number=int(round_number)).all()
+    # Convert numpy types to native Python types
+    for game in games_dict:
+        for key, value in game.items():
+            if isinstance(value, np.integer):
+                game[key] = int(value)
+            elif isinstance(value, np.floating):
+                game[key] = float(value)
+            elif isinstance(value, np.bool_):
+                game[key] = bool(value)
 
-    # Convert the tips to a dictionary with game_id as the key
-    tips_dict = {tip.game_id: {'selectedTeam': tip.selected_team, 'confidenceScore': tip.confidence_score} for tip in tips}
-
-    tips_submitted = len(tips_dict) > 0
-
-    print(games.dtypes)
-
-    return jsonify({
-        'games': games.to_dict(orient='records'),
-        'rounds': rounds,
-        'current_round': round_number,
-        'tips_submitted': tips_submitted,
-        'tips': tips_dict
-    })
+    # Render the games.html template and pass the games data and rounds to it
+    return render_template('games.html', games=games_dict, rounds=rounds, tips=tips)
 
 @app.route('/submit_tips', methods=['POST'])
 @login_required
