@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="login-container">
+    <h1 class="login-title">Welcome to the Tipping Competition!</h1>
+    <p class="login-subtitle">
+        Participate in our exciting tipping competition where you can predict the outcomes of your favorite games. 
+        It's simple and fun! Just select the team you think will win and assign a confidence score to your prediction. 
+        The higher the score, the more confident you are in your prediction. But be careful, you can only use each 
+        confidence score once per round. So strategize wisely!
+    </p>
+    <a href="{{ url_for('get_games') }}" class="submit-btn">SET YOUR TIPS</a>
+</div>
+{% endblock %}

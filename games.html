@@ -1,0 +1,366 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="round-selector">
+        <ul class="round-list">
+            {% for i in range(1, 25) %}
+            <li class="round-item">
+                <input type="radio" id="round-{{i}}" name="round" value="{{i}}">
+                <label class="round-button {% if i == current_round %}selected{% endif %}" for="round-{{i}}">{{i}}</label>
+            </li>
+            {% endfor %}
+        </ul>        
+    </div>    
+    <div id="games-container">
+        {% for game in games %}
+        <div class="game" data-game-id="{{ game.game_id }}" data-tip="{{ tips[game.game_id] if tips[game.game_id] is not none else {}|tojson }}">
+            <div class="game-content">
+                <p class="game-info" data-utc-datetime="{{ game.DateTime }}">
+                    <span class="date">{{ game.Date }}</span>
+                    <span class="time">{{ game.Time }}</span>
+                    <span class="location">
+                        <img src="{{ url_for('static', filename='assets/location-icon.png') }}" alt="Location Icon" class="location-icon">
+                        {{ game.location }}
+                    </span>
+                </p>                               
+                <div class="teams">
+                    <div class="team-container">
+                        <div class="team">
+                            <button id="{{ game.home_team }}" name="team" value="{{ game.home_team }}">
+                                <img src="{{ url_for('static', filename=game.home_team_Logo) }}" alt="{{ game.home_team }}" width="40" height="">
+                                {{ game.home_team }}
+                            </button>
+                        </div>
+                        <img src="{{ url_for('static', filename='assets/Versus-icon.png') }}" alt="Versus Icon" class="team-icon">
+                        <div class="team">
+                            <button id="{{ game.away_team }}" name="team" value="{{ game.away_team }}">
+                                <img src="{{ url_for('static', filename=game.away_team_Logo) }}" alt="{{ game.away_team }}" width="40" height="">
+                                {{ game.away_team }}
+                            </button>
+                        </div>
+                    </div>
+                </div>                                              
+                <div class="confidence">
+                    <p>Confidence:
+                        <span class="tooltip">
+                            <img src="{{ url_for('static', filename='assets/tooltip-icon.png') }}" alt="Tooltip Icon" class="tooltip-icon">
+                            <span class="tooltiptext">What is the Confidence Rating?<br><br>This is a measure of how certain you are about the outcome of a game. Assign a unique number to each game, with 1 being the least confident and the highest number being the most confident. Once a number is assigned to a game, it cannot be used for another game. <br><br>If your selected team wins, the confidence rating is added to your round total. If your selected team loses, the confidence rating is subtracted from your round total.</span>
+                        </span>
+                    </p>
+                    <div class="confidence-buttons"></div>
+                </div>
+            </div>                                     
+        </div>
+        {% endfor %}
+    </div>
+    <div class="submit-container">
+        <button class="submit-btn" id="submit-btn" {% if tips_submitted %}disabled{% endif %}>{% if tips_submitted %}SUBMITTED{% else %}SUBMIT{% endif %}</button>
+    </div>    
+    <script>
+        var games = {{ games|tojson }};
+        var numGames = {{ games|length }};
+
+        // Add 'selected' class to the clicked button
+        document.querySelectorAll('.game-filter-button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove 'selected' class from all buttons
+                document.querySelectorAll('.game-filter-button').forEach(button => {
+                    button.classList.remove('selected');
+                });
+
+                // Add 'selected' class to the clicked button
+                this.classList.add('selected');
+
+                // Filter games
+                var filter = this.dataset.filter;
+                document.querySelectorAll('.game').forEach(game => {
+                    if (filter === 'all' || game.dataset.type === filter) {
+                        game.style.display = 'block';
+                    } else {
+                        game.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        function initializeGameInteractions() {
+            // Create confidence rating buttons
+            const numGames = document.querySelectorAll('.game').length;
+            document.querySelectorAll('.confidence-buttons').forEach(confidenceButtonsDiv => {
+                for (let i = 1; i <= numGames; i++) {
+                    const button = document.createElement('button');
+                    button.textContent = i;
+                    button.classList.add('confidence-button');
+                    confidenceButtonsDiv.appendChild(button);
+                }
+            });
+
+            // Convert UTC date and time to local date and time
+            document.querySelectorAll('.game-info').forEach(gameInfoElement => {
+                // Get the UTC date and time
+                var utcDateTime = new Date(gameInfoElement.dataset.utcDatetime);
+
+                // Convert the UTC date and time to the local date and time
+                var localDateTime = new Date(utcDateTime.getTime() - new Date().getTimezoneOffset() * 60 * 1000);
+
+                // Round the minutes to the nearest 5 minutes
+                localDateTime.setMinutes(Math.round(localDateTime.getMinutes() / 5) * 5);
+
+                // Format the local date and time
+                var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                var localDate = localDateTime.toLocaleDateString('en-US', options);
+                var localTime = localDateTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+
+                // Remove leading zero from the hour if it exists
+                if (localTime.startsWith('0')) {
+                    localTime = localTime.slice(1);
+                }
+
+                // Update the displayed date and time
+                gameInfoElement.querySelector('.date').textContent = localDate;
+                gameInfoElement.querySelector('.time').textContent = localTime;
+            });
+
+            // Handle team selection
+            document.querySelectorAll('.team button').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Get all buttons in the same game
+                    const otherButtons = this.closest('.game').querySelectorAll('.team button');
+                    // Remove 'selected' class from all buttons in the same game
+                    otherButtons.forEach(btn => btn.classList.remove('selected'));
+
+                    // Add 'selected' class to the clicked button
+                    this.classList.add('selected');
+
+                    // Enable the submit button
+                    document.getElementById('submit-btn').disabled = false;
+                });
+                // Set the initial state of the button
+                var game = button.closest('.game');
+                var tip = JSON.parse(game.dataset.tip);
+                if (tip && tip.selectedTeam === button.value) {
+                    button.classList.add('selected');
+                }
+            });
+
+            // Handle confidence rating selection
+            document.querySelectorAll('.confidence-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    // If the button is already selected
+                    if (this.classList.contains('selected')) {
+                        // Remove 'selected' class
+                        this.classList.remove('selected');
+                        // Get all buttons with the same rating
+                        const sameRatingButtons = document.querySelectorAll('.confidence-button:nth-child(' + (parseInt(this.textContent)) + ')');
+                        // Enable all buttons with the same rating
+                        sameRatingButtons.forEach(btn => {
+                            btn.disabled = false;
+                            btn.style.textDecoration = 'none';
+                            if (!btn.classList.contains('selected')) {
+                                btn.style.backgroundColor = '#89CFF0'; // Set the background color back to pastel blue
+                            }
+                        });
+                    } else {
+                        // If there's another button already selected in the same game
+                        const selectedButton = this.closest('.confidence-buttons').querySelector('.confidence-button.selected');
+                        if (selectedButton) {
+                            // Remove 'selected' class from the previously selected button
+                            selectedButton.classList.remove('selected');
+                            // Get all buttons with the same rating as the previously selected button
+                            const sameRatingButtons = document.querySelectorAll('.confidence-button:nth-child(' + (parseInt(selectedButton.textContent)) + ')');
+                            // Enable all buttons with the same rating as the previously selected button
+                            sameRatingButtons.forEach(btn => {
+                                btn.disabled = false;
+                                btn.style.textDecoration = 'none';
+                                if (!btn.classList.contains('selected')) {
+                                    btn.style.backgroundColor = '#89CFF0'; // Set the background color back to pastel blue
+                                }
+                            });
+                        }
+                        // Add 'selected' class to the clicked button
+                        this.classList.add('selected');
+                        this.style.backgroundColor = 'green'; // Set the background color to green
+                        // Get all buttons with the same rating
+                        const sameRatingButtons = document.querySelectorAll('.confidence-button:nth-child(' + (parseInt(this.textContent)) + ')');
+                        // Disable all buttons with the same rating
+                        sameRatingButtons.forEach(btn => {
+                            if (!btn.classList.contains('selected')) {
+                                btn.disabled = true;
+                                btn.style.textDecoration = 'line-through';
+                                btn.style.backgroundColor = 'lightgrey'; // Set the background color to red
+                            }
+                        });
+                        // Enable the submit button
+                        document.getElementById('submit-btn').disabled = false;
+                    }
+
+                    // Set the initial state of the button
+                    var game = button.closest('.game');
+                    var tip = JSON.parse(game.dataset.tip);
+                    if (tip && tip.confidenceScore === parseInt(button.textContent)) {
+                        button.classList.add('selected');
+                    }
+                });
+            });
+        }
+        document.querySelector('.tooltip').addEventListener('click', function() {
+            var tooltipText = this.querySelector('.tooltiptext');
+            if (tooltipText.style.visibility === 'visible') {
+                tooltipText.style.visibility = 'hidden';
+            } else {
+                tooltipText.style.visibility = 'visible';
+            }
+        });
+        document.querySelectorAll('.round-button').forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                // Remove 'selected' class from all round buttons
+                document.querySelectorAll('.round-button').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+
+                // Add 'selected' class to the clicked button
+                this.classList.add('selected');
+
+                var roundNumber = this.textContent;
+                fetch('/games/' + roundNumber, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json'
+                    }
+                }).then(function(response) {
+                    return response.json();
+                }).then(function(data) {
+                    // Clear the games container
+                    var gamesContainer = document.querySelector('#games-container');
+                    gamesContainer.innerHTML = '';
+
+                    // Create new games from the data and add them to the games container
+                    data.games.forEach(function(game) {
+                        var newGame = createGameElement(game);  // You need to implement this function
+                        gamesContainer.appendChild(newGame);
+                    });
+
+                    // Re-initialize game interactions for the new games
+                    initializeGameInteractions();
+                });
+            });
+        });
+
+        initializeGameInteractions();
+
+        document.getElementById('submit-btn').addEventListener('click', function() {
+            // Create an object to store the tips
+            var tips = {};
+
+            // Iterate over all the games
+            document.querySelectorAll('.game').forEach(function(game) {
+                // Get the game id
+                var gameId = game.dataset.gameId; // You need to add this data attribute to each game in your template
+
+                // Get the selected team
+                var selectedTeamButton = game.querySelector('.team button.selected');
+                if (selectedTeamButton) {
+                    var selectedTeam = selectedTeamButton.value;
+                } else {
+                    alert('Please select a team for all games before submitting.');
+                    return;
+                }
+
+                // Get the confidence score
+                var selectedConfidenceButton = game.querySelector('.confidence-button.selected');
+                if (selectedConfidenceButton) {
+                    var confidenceScore = selectedConfidenceButton.textContent;
+                } else {
+                    alert('Please select a confidence score for all games before submitting.');
+                    return;
+                }
+
+                // Add the tip to the tips object
+                tips[gameId] = {
+                    selectedTeam: selectedTeam,
+                    confidenceScore: confidenceScore
+                };
+            });
+
+            // Send the tips to the server
+            fetch('/submit_tips', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(tips)
+            }).then(function(response) {
+                if (response.ok) {
+                    // If the server responded with a success status, disable the submit button
+                    var submitButton = document.getElementById('submit-btn');
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'SUBMITTED';
+                    submitButton.style.backgroundColor = 'grey';
+                } else {
+                    alert('An error occurred while submitting your tips. Please try again.');
+                }
+            });
+            // Disable the submit button
+            var submitButton = document.getElementById('submit-btn');
+            submitButton.disabled = true;
+            submitButton.textContent = 'SUBMITTED';
+            submitButton.style.backgroundColor = 'grey';
+        });
+
+        function createGameElement(game) {
+            // Create a new div element for the game
+            var gameElement = document.createElement('div');
+            gameElement.classList.add('game');
+            gameElement.dataset.gameId = game.game_id;
+
+            // Add the game data to the game element
+            gameElement.innerHTML = `
+                <div class="game-content">
+                    <p class="game-info" data-utc-datetime="${game.DateTime}">
+                        <span class="date">${game.Date}</span>
+                        <span class="time">${game.Time}</span>
+                        <span class="location">
+                            <img src="${url_for('static', filename='assets/location-icon.png')}" alt="Location Icon" class="location-icon">
+                            ${game.location}
+                        </span>
+                    </p>                               
+                    <div class="teams">
+                        <div class="team-container">
+                            <div class="team">
+                                <button id="${game.home_team}" name="team" value="${game.home_team}">
+                                    <img src="${url_for('static', filename=game.home_team_Logo)}" alt="${game.home_team}" width="40" height="">
+                                    ${game.home_team}
+                                </button>
+                            </div>
+                            <img src="${url_for('static', filename='assets/Versus-icon.png')}" alt="Versus Icon" class="team-icon">
+                            <div class="team">
+                                <button id="${game.away_team}" name="team" value="${game.away_team}">
+                                    <img src="${url_for('static', filename=game.away_team_Logo)}" alt="${game.away_team}" width="40" height="">
+                                    ${game.away_team}
+                                </button>
+                            </div>
+                        </div>
+                    </div>                                              
+                    <div class="confidence">
+                        <p>Confidence:
+                            <span class="tooltip">
+                                <img src="${url_for('static', filename='assets/tooltip-icon.png')}" alt="Tooltip Icon" class="tooltip-icon">
+                                <span class="tooltiptext">What is the Confidence Rating?<br><br>This is a measure of how certain you are about the outcome of a game. Assign a unique number to each game, with 1 being the least confident and the highest number being the most confident. Once a number is assigned to a game, it cannot be used for another game. <br><br>If your selected team wins, the confidence rating is added to your round total. If your selected team loses, the confidence rating is subtracted from your round total.</span>
+                            </span>
+                        </p>
+                        <div class="confidence-buttons"></div>
+                    </div>
+                </div>`;
+
+            return gameElement;
+        }
+        fetch('/games')
+            .then(response => response.json())
+            .then(data => {
+                // Handle the data here
+                console.log(data);
+            });
+    </script>
+{% endblock %}

@@ -1,0 +1,41 @@
+
+    {% for game in games %}
+    <div class="game" data-game-id="{{ game.game_id }}" data-tip="{{ tips[game.game_id] if tips[game.game_id] is not none else {}|tojson }}">
+        <div class="game-content">
+            <p class="game-info" data-utc-datetime="{{ game.DateTime }}">
+                <span class="date">{{ game.Date }}</span>
+                <span class="time">{{ game.Time }}</span>
+                <span class="location">
+                    <img src="{{ url_for('static', filename='assets/location-icon.png') }}" alt="Location Icon" class="location-icon">
+                    {{ game.location }}
+                </span>
+            </p>                               
+            <div class="teams">
+                <div class="team-container">
+                    <div class="team">
+                        <button id="{{ game.home_team }}" name="team" value="{{ game.home_team }}">
+                            <img src="{{ url_for('static', filename=game.home_team_Logo) }}" alt="{{ game.home_team }}" width="40" height="">
+                            {{ game.home_team }}
+                        </button>
+                    </div>
+                    <img src="{{ url_for('static', filename='assets/Versus-icon.png') }}" alt="Versus Icon" class="team-icon">
+                    <div class="team">
+                        <button id="{{ game.away_team }}" name="team" value="{{ game.away_team }}">
+                            <img src="{{ url_for('static', filename=game.away_team_Logo) }}" alt="{{ game.away_team }}" width="40" height="">
+                            {{ game.away_team }}
+                        </button>
+                    </div>
+                </div>
+            </div>                                              
+            <div class="confidence">
+                <p>Confidence:
+                    <span class="tooltip">
+                        <img src="{{ url_for('static', filename='assets/tooltip-icon.png') }}" alt="Tooltip Icon" class="tooltip-icon">
+                        <span class="tooltiptext">What is the Confidence Rating?<br><br>This is a measure of how certain you are about the outcome of a game. Assign a unique number to each game, with 1 being the least confident and the highest number being the most confident. Once a number is assigned to a game, it cannot be used for another game. <br><br>If your selected team wins, the confidence rating is added to your round total. If your selected team loses, the confidence rating is subtracted from your round total.</span>
+                    </span>
+                </p>
+                <div class="confidence-buttons"></div>
+            </div>
+        </div>                                     
+    </div>
+    {% endfor %}

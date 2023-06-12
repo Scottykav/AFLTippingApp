@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="register-container">
+        <h2 class="register-title">ENTER YOUR DETAILS BELOW TO CREATE A TIPPING ACCOUNT</h2>
+        <form class="register-form" action="{{ url_for('register') }}" method="post" id="registerForm" onsubmit="return validateForm()">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message | safe }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <label for="display_name">Display Name <span class="required">*</span></label>
+            <input type="text" name="display_name" id="display_name" onblur="checkDisplayName()">
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name">
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name">
+            <label for="mobile_number">Mobile Number</label>
+            <input type="text" id="mobile_number" name="mobile_number">
+            <label for="email">Email <span class="required">*</span></label>
+            <input type="email" name="email" id="email" onblur="checkEmail()">
+            <label for="password">Password <span class="required">*</span></label>
+            <input type="password" id="password" name="password" required>
+            <label for="confirm_password">Confirm Password <span class="required">*</span></label>
+            <input type="password" id="confirm_password" required> 
+            <input type="submit" value="Register">
+        </form>
+    </div>       
+    <script>
+        function checkDisplayName() {
+            var displayName = document.getElementById("display_name").value;
+            $.get("/check_display_name", {display_name: displayName}, function(data) {
+                if (data.exists) {
+                    alert("This Display Name is already in use, please select another name.");
+                }
+            });
+        }
+    
+        function checkEmail() {
+            var email = document.getElementById("email").value;
+            $.get("/check_email", {email: email}, function(data) {
+                if (data.exists) {
+                    alert("This email is already in use. Please <a href='/login'>login</a> with your existing registered email.");
+                }
+            });
+        }
+    
+        function validateForm() {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var confirm_password = document.getElementById("confirm_password").value;
+    
+            // Check if email is valid
+            var email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!email_regex.test(email)) {
+                alert('Please enter a valid email address.');
+                return false;
+            }
+    
+            // Check if passwords match
+            if (password !== confirm_password) {
+                alert('Passwords do not match.');
+                return false;
+            }
+    
+            return true;
+        }
+    
+        window.onload = function() {
+            document.getElementById("registerForm").addEventListener("submit", function(event) {
+                if (!validateForm()) {
+                    event.preventDefault(); // prevent form submission
+                }
+            });
+        }
+    
+        // Check if a success message exists
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% if category == 'success' %}
+                        setTimeout(function() {
+                            window.location.href = "/login";
+                        }, 3000);
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </script>      
+{% endblock %}

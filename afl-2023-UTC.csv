@@ -1,0 +1,208 @@
+game_id,round_number,Date,Location,Home_Team,Away_Team
+1,1,45001.34722,MCG,Richmond,Carlton
+2,1,45002.36111,MCG,Geelong Cats,Collingwood
+3,1,45003.11458,Marvel Stadium,North Melbourne,West Coast Eagles
+4,1,45003.23264,Adelaide Oval,Port Adelaide,Brisbane Lions
+5,1,45003.35069,MCG,Melbourne,Western Bulldogs
+6,1,45003.375,Heritage Bank Stadium,Gold Coast Suns,Sydney Swans
+7,1,45004.09028,GIANTS Stadium,GWS Giants,Adelaide Crows
+8,1,45004.18056,MCG,Hawthorn,Essendon
+9,1,45004.23611,Marvel Stadium,St Kilda,Fremantle
+10,2,45008.34722,MCG,Carlton,Geelong Cats
+11,2,45009.37153,Gabba,Brisbane Lions,Melbourne
+12,2,45010.11458,MCG,Collingwood,Port Adelaide
+13,2,45010.23264,Adelaide Oval,Adelaide Crows,Richmond
+14,2,45010.35069,Marvel Stadium,Western Bulldogs,St Kilda
+15,2,45010.35417,Optus Stadium,Fremantle,North Melbourne
+16,2,45011.09028,SCG,Sydney Swans,Hawthorn
+17,2,45011.18056,Marvel Stadium,Essendon,Gold Coast Suns
+18,2,45011.30556,Optus Stadium,West Coast Eagles,GWS Giants
+19,3,45015.34722,Marvel Stadium,Western Bulldogs,Brisbane Lions
+20,3,45016.36806,MCG,Collingwood,Richmond
+21,3,45017.11458,University of Tasmania Stadium,Hawthorn,North Melbourne
+22,3,45017.23264,GIANTS Stadium,GWS Giants,Carlton
+23,3,45017.35069,MCG,St Kilda,Essendon
+24,3,45017.35417,Adelaide Oval,Port Adelaide,Adelaide Crows
+25,3,45018.17361,Heritage Bank Stadium,Gold Coast Suns,Geelong Cats
+26,3,45018.22222,MCG,Melbourne,Sydney Swans
+27,3,45018.30556,Optus Stadium,Fremantle,West Coast Eagles
+28,4,45022.39931,Gabba,Brisbane Lions,Collingwood
+29,4,45023.26389,Marvel Stadium,North Melbourne,Carlton
+30,4,45024.15625,Adelaide Oval,Adelaide Crows,Fremantle
+31,4,45024.27431,MCG,Richmond,Western Bulldogs
+32,4,45024.39583,Marvel Stadium,St Kilda,Gold Coast Suns
+33,4,45024.39583,SCG,Sydney Swans,Port Adelaide
+34,4,45025.17361,Marvel Stadium,Essendon,GWS Giants
+35,4,45025.30556,Optus Stadium,West Coast Eagles,Melbourne
+36,4,45026.22222,MCG,Geelong Cats,Hawthorn
+37,5,45029.40278,Adelaide Oval,Adelaide Crows,Carlton
+38,5,45030.29861,Norwood Oval,Fremantle,Gold Coast Suns
+39,5,45030.42361,Adelaide Oval,Richmond,Sydney Swans
+40,5,45031.13194,Adelaide Hills,Brisbane Lions,North Melbourne
+41,5,45031.25694,Adelaide Oval,Essendon,Melbourne
+42,5,45031.40972,Adelaide Oval,Port Adelaide,Western Bulldogs
+43,5,45032.13194,Adelaide Oval,Geelong Cats,West Coast Eagles
+44,5,45032.22222,Norwood Oval,GWS Giants,Hawthorn
+45,5,45032.28472,Adelaide Oval,Collingwood,St Kilda
+46,6,45037.42361,Optus Stadium,Fremantle,Western Bulldogs
+47,6,45038.15625,Adelaide Oval,Port Adelaide,West Coast Eagles
+48,6,45038.27431,Manuka Oval,GWS Giants,Brisbane Lions
+49,6,45038.39236,GMHBA Stadium,Geelong Cats,Sydney Swans
+50,6,45039.13194,University of Tasmania Stadium,Hawthorn,Adelaide Crows
+51,6,45039.22222,Marvel Stadium,Carlton,St Kilda
+52,6,45039.27778,Heritage Bank Stadium,Gold Coast Suns,North Melbourne
+53,6,45040.39236,MCG,Melbourne,Richmond
+54,6,45041.22222,MCG,Collingwood,Essendon
+55,7,45044.40972,Marvel Stadium,St Kilda,Port Adelaide
+56,7,45045.15625,Gabba,Brisbane Lions,Fremantle
+57,7,45045.17361,SCG,Sydney Swans,GWS Giants
+58,7,45045.27431,Marvel Stadium,Western Bulldogs,Hawthorn
+59,7,45045.39236,MCG,Melbourne,North Melbourne
+60,7,45045.39583,Optus Stadium,West Coast Eagles,Carlton
+61,7,45046.13194,MCG,Essendon,Geelong Cats
+62,7,45046.22222,Marvel Stadium,Richmond,Gold Coast Suns
+63,7,45046.27778,Adelaide Oval,Adelaide Crows,Collingwood
+64,8,45051.40972,Marvel Stadium,Carlton,Brisbane Lions
+65,8,45052.15625,MCG,Richmond,West Coast Eagles
+66,8,45052.17361,GMHBA Stadium,Geelong Cats,Adelaide Crows
+67,8,45052.27431,Heritage Bank Stadium,Gold Coast Suns,Melbourne
+68,8,45052.39583,Manuka Oval,GWS Giants,Western Bulldogs
+69,8,45052.39583,Optus Stadium,Fremantle,Hawthorn
+70,8,45053.13194,Adelaide Oval,Port Adelaide,Essendon
+71,8,45053.22222,MCG,Collingwood,Sydney Swans
+72,8,45053.27778,Marvel Stadium,North Melbourne,St Kilda
+73,9,45058.38889,MCG,Richmond,Geelong Cats
+74,9,45058.44444,Optus Stadium,West Coast Eagles,Gold Coast Suns
+75,9,45059.15625,SCG,Sydney Swans,Fremantle
+76,9,45059.17361,Blundstone Arena,North Melbourne,Port Adelaide
+77,9,45059.27431,MCG,Hawthorn,Melbourne
+78,9,45059.39236,Gabba,Brisbane Lions,Essendon
+79,9,45059.39583,Marvel Stadium,Carlton,Western Bulldogs
+80,9,45060.13194,Adelaide Oval,Adelaide Crows,St Kilda
+81,9,45060.27778,MCG,Collingwood,GWS Giants
+82,10,45065.40972,Adelaide Oval,Port Adelaide,Melbourne
+83,10,45066.15625,Marvel Stadium,North Melbourne,Sydney Swans
+84,10,45066.17361,Mars Stadium,Western Bulldogs,Adelaide Crows
+85,10,45066.27431,Optus Stadium,Fremantle,Geelong Cats
+86,10,45066.39583,Gabba,Brisbane Lions,Gold Coast Suns
+87,10,45066.40278,MCG,Essendon,Richmond
+88,10,45067.13194,University of Tasmania Stadium,Hawthorn,West Coast Eagles
+89,10,45067.22222,MCG,Carlton,Collingwood
+90,10,45067.27778,GIANTS Stadium,GWS Giants,St Kilda
+91,11,45072.40972,SCG,Sydney Swans,Carlton
+92,11,45073.15625,Marvel Stadium,St Kilda,Hawthorn
+93,11,45073.17361,MCG,Melbourne,Fremantle
+94,11,45073.27431,GMHBA Stadium,Geelong Cats,GWS Giants
+95,11,45073.39236,TIO Stadium,Gold Coast Suns,Western Bulldogs
+96,11,45073.39583,Optus Stadium,West Coast Eagles,Essendon
+97,11,45074.13194,MCG,Richmond,Port Adelaide
+98,11,45074.22222,Marvel Stadium,Collingwood,North Melbourne
+99,11,45074.27778,Adelaide Oval,Adelaide Crows,Brisbane Lions
+100,12,45079.40972,MCG,Melbourne,Carlton
+101,12,45080.15625,Adelaide Oval,Port Adelaide,Hawthorn
+102,12,45080.27431,Optus Stadium,West Coast Eagles,Collingwood
+103,12,45080.39236,Marvel Stadium,Western Bulldogs,Geelong Cats
+104,12,45080.39583,TIO Stadium,Gold Coast Suns,Adelaide Crows
+105,12,45081.13194,GIANTS Stadium,GWS Giants,Richmond
+106,12,45081.27778,Marvel Stadium,Essendon,North Melbourne
+107,13,45085.38194,SCG,Sydney Swans,St Kilda
+108,13,45086.40972,Marvel Stadium,Western Bulldogs,Port Adelaide
+109,13,45087.15625,MCG,Hawthorn,Brisbane Lions
+110,13,45087.27431,Adelaide Oval,Adelaide Crows,West Coast Eagles
+111,13,45087.39236,Optus Stadium,Fremantle,Richmond
+112,13,45088.22222,Blundstone Arena,North Melbourne,GWS Giants
+113,13,45088.38542,MCG,Carlton,Essendon
+114,13,45089.22222,MCG,Melbourne,Collingwood
+115,14,45092.40278,Adelaide Oval,Port Adelaide,Geelong Cats
+116,14,45093.40972,Gabba,Brisbane Lions,Sydney Swans
+117,14,45094.27431,GIANTS Stadium,GWS Giants,Fremantle
+118,14,45094.39236,MCG,Richmond,St Kilda
+119,14,45095.13194,MCG,Carlton,Gold Coast Suns
+120,14,45095.27778,Marvel Stadium,North Melbourne,Western Bulldogs
+121,15,45099.38889,GMHBA Stadium,Geelong Cats,Melbourne
+122,15,45100.40972,Marvel Stadium,St Kilda,Brisbane Lions
+123,15,45101.27431,SCG,Sydney Swans,West Coast Eagles
+124,15,45101.39236,Optus Stadium,Fremantle,Essendon
+125,15,45102.13194,MCG,Collingwood,Adelaide Crows
+126,15,45102.27778,Heritage Bank Stadium,Gold Coast Suns,Hawthorn
+127,16,45106.38889,Gabba,Brisbane Lions,Richmond
+131,16,45107.40972,SCG,Sydney Swans,Geelong Cats
+132,16,45108.15625,Marvel Stadium,Western Bulldogs,Fremantle
+133,16,45108.15625,Adelaide Oval,Adelaide Crows,North Melbourne
+129,16,45108.27431,Heritage Bank Stadium,Gold Coast Suns,Collingwood
+128,16,45108.39236,MCG,Essendon,Port Adelaide
+130,16,45109.13194,MCG,Hawthorn,Carlton
+134,16,45109.22222,TIO Traeger Park,Melbourne,GWS Giants
+135,16,45109.27778,Optus Stadium,West Coast Eagles,St Kilda
+140,17,45113.38889,MCG,Richmond,Sydney Swans
+142,17,45114.40972,Marvel Stadium,Western Bulldogs,Collingwood
+136,17,45115.15625,Gabba,Brisbane Lions,West Coast Eagles
+139,17,45115.27431,GIANTS Stadium,GWS Giants,Hawthorn
+141,17,45115.39236,Marvel Stadium,St Kilda,Melbourne
+143,17,45115.40278,Adelaide Oval,Port Adelaide,Gold Coast Suns
+138,17,45116.13194,GMHBA Stadium,Geelong Cats,North Melbourne
+137,17,45116.22222,Marvel Stadium,Essendon,Adelaide Crows
+144,17,45116.27778,Optus Stadium,Fremantle,Carlton
+151,18,45120.38889,SCG,Sydney Swans,Western Bulldogs
+149,18,45121.40972,MCG,Melbourne,Brisbane Lions
+146,18,45122.15625,MCG,Collingwood,Fremantle
+148,18,45122.17361,Heritage Bank Stadium,Gold Coast Suns,St Kilda
+145,18,45122.27431,Marvel Stadium,Carlton,Port Adelaide
+147,18,45122.39236,GMHBA Stadium,Geelong Cats,Essendon
+152,18,45122.40278,Adelaide Oval,Adelaide Crows,GWS Giants
+150,18,45123.13194,Marvel Stadium,North Melbourne,Hawthorn
+153,18,45123.27778,Optus Stadium,West Coast Eagles,Richmond
+156,19,45128.40972,Marvel Stadium,Essendon,Western Bulldogs
+159,19,45129.15625,MCG,Richmond,Hawthorn
+155,19,45129.17361,Marvel Stadium,Carlton,West Coast Eagles
+154,19,45129.27431,Gabba,Brisbane Lions,Geelong Cats
+161,19,45129.40278,Adelaide Oval,Port Adelaide,Collingwood
+162,19,45129.40278,Optus Stadium,Fremantle,Sydney Swans
+157,19,45130.13194,Manuka Oval,GWS Giants,Gold Coast Suns
+158,19,45130.22222,MCG,Melbourne,Adelaide Crows
+160,19,45130.27778,Marvel Stadium,St Kilda,North Melbourne
+163,20,45135.40972,MCG,Collingwood,Carlton
+165,20,45136.15625,GMHBA Stadium,Geelong Cats,Fremantle
+169,20,45136.15625,Mars Stadium,Western Bulldogs,GWS Giants
+166,20,45136.27431,Heritage Bank Stadium,Gold Coast Suns,Brisbane Lions
+164,20,45136.39236,Marvel Stadium,Essendon,Sydney Swans
+170,20,45136.40278,Adelaide Oval,Adelaide Crows,Port Adelaide
+167,20,45137.13194,Marvel Stadium,Hawthorn,St Kilda
+168,20,45137.22222,MCG,Richmond,Melbourne
+171,20,45137.27778,Optus Stadium,West Coast Eagles,North Melbourne
+178,21,45142.40972,Marvel Stadium,Western Bulldogs,Richmond
+172,21,45143.15625,Marvel Stadium,Essendon,West Coast Eagles
+179,21,45143.17361,Adelaide Oval,Adelaide Crows,Gold Coast Suns
+175,21,45143.27431,MCG,Hawthorn,Collingwood
+173,21,45143.39236,GMHBA Stadium,Geelong Cats,Port Adelaide
+174,21,45143.39583,GIANTS Stadium,GWS Giants,Sydney Swans
+176,21,45144.13194,Blundstone Arena,North Melbourne,Melbourne
+177,21,45144.22222,Marvel Stadium,St Kilda,Carlton
+180,21,45144.27778,Optus Stadium,Fremantle,Brisbane Lions
+183,22,45149.40972,MCG,Collingwood,Geelong Cats
+185,22,45150.15625,Marvel Stadium,North Melbourne,Essendon
+187,22,45150.17361,SCG,Sydney Swans,Gold Coast Suns
+182,22,45150.27431,Gabba,Brisbane Lions,Adelaide Crows
+181,22,45150.39236,MCG,Carlton,Melbourne
+189,22,45150.42361,Optus Stadium,West Coast Eagles,Fremantle
+184,22,45151.13194,University of Tasmania Stadium,Hawthorn,Western Bulldogs
+186,22,45151.22222,Marvel Stadium,St Kilda,Richmond
+188,22,45151.27778,Adelaide Oval,Port Adelaide,GWS Giants
+190,23,45156.40972,Marvel Stadium,Collingwood,Brisbane Lions
+194,23,45157.15625,MCG,Richmond,North Melbourne
+191,23,45157.17361,Heritage Bank Stadium,Gold Coast Suns,Carlton
+192,23,45157.27431,GIANTS Stadium,GWS Giants,Essendon
+195,23,45157.39236,Marvel Stadium,St Kilda,Geelong Cats
+197,23,45157.40278,Adelaide Oval,Adelaide Crows,Sydney Swans
+196,23,45158.13194,Marvel Stadium,Western Bulldogs,West Coast Eagles
+193,23,45158.22222,MCG,Melbourne,Hawthorn
+198,23,45158.27778,Optus Stadium,Fremantle,Port Adelaide
+199,24,45163.08333,Gabba,Brisbane Lions,St Kilda
+200,24,45163.08333,Marvel Stadium,Carlton,GWS Giants
+201,24,45163.08333,MCG,Essendon,Collingwood
+202,24,45163.08333,GMHBA Stadium,Geelong Cats,Western Bulldogs
+203,24,45163.08333,MCG,Hawthorn,Fremantle
+204,24,45163.08333,Blundstone Arena,North Melbourne,Gold Coast Suns
+205,24,45163.08333,SCG,Sydney Swans,Melbourne
+206,24,45163.10417,Adelaide Oval,Port Adelaide,Richmond
+207,24,45163.16667,Optus Stadium,West Coast Eagles,Adelaide Crows

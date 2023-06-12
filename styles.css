@@ -1,0 +1,539 @@
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #003366;
+    height: 90px;
+    padding: 0 20px;
+    box-sizing: border-box;  /* Change this line */
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+}
+footer {
+    background-color: #e8e8e8; 
+    border-top: 2px solid red; 
+    width: 100%; 
+    padding: 10px 20px; 
+    box-sizing: border-box; 
+    display: flex; 
+    justify-content: space-between;
+    margin-top: auto;
+}
+footer div:nth-child(2) {
+    margin-left: auto;
+}
+.logo {
+    height: auto;
+    width: 20%; /* adjust this value as needed */
+    padding-top: 10px; /* add this line */
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+    right: 0;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.account-icon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.dropdown-content a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    margin: 10px 0;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+.login {
+    color: white;
+    font-size: 20px;
+}
+.login-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin: 10px auto; /* Center the container horizontally */
+    padding: 20px;
+    max-width: 960px;
+    width: 100%;
+}
+.create-account {
+    text-align: left;
+}
+
+.remember-me {
+    display: flex;
+    justify-content: flex-start; /* align items to the left */
+}
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+    background-color: #0051b1;
+    flex-direction: column; /* Add this line */
+    min-height: 100vh;
+}
+.round-selector {
+    display: flex;
+    overflow-x: auto;
+    position: relative;
+    width: 100%;
+    height: 50px;
+    box-sizing: content-box;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+}
+.round-selector::before,
+.round-selector::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    pointer-events: none;
+}
+
+.round-selector::before {
+    left: 0;
+    background: linear-gradient(to right, white 0%, transparent 100%);
+}
+
+.round-selector::after {
+    right: 0;
+    background: linear-gradient(to left, white 0%, transparent 100%);
+}
+.round-button {
+    font-size: 16px;
+    color: #333;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: font-size 0.3s ease;
+    position: relative;  /* add this line */
+}
+
+.round-button::before {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: green;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.3s ease;
+}
+
+.round-button:hover {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+.round-button.selected {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    font-size: 18px;
+    color: black;
+    font-weight: bold;
+    background-color: green;
+    padding: 5px;
+    color: #fcfbfb;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.round-list {
+    justify-content: center;
+    width: 100%;
+    list-style-type: none;
+    padding: 0 50px;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+.round-item {
+    flex-shrink: 0;
+    text-align: center;
+    padding: 0 10px; /* adjust this value as needed */
+    margin: 10px 0; /* add this line */
+}
+.round-item input[type="radio"] {
+    display: none;
+}
+table {
+    max-width: 600px; /* Change width to max-width */
+    width: 100%; /* Add this line */
+    border-collapse: collapse;
+}
+#games-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.game {
+    width: 100%;
+    border: 1px solid #ddd;
+    padding: 20px 0;
+    margin-bottom: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+}
+
+@media screen and (min-width: 960px) {
+    .game {
+        width: 960px;
+    }
+}
+.game td {
+    padding: 20px 30px;
+}
+.game-content {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.game-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.date {
+    margin: 0;
+    font-size: 14px;
+    color: #353335;
+    text-align: left;
+} 
+.time {
+    margin: 0;
+    font-size: 20px;
+}
+.location {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    color: #353335;
+}
+.location-icon {
+    height: 14px;
+}
+.teams {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: nowrap;
+}
+.team-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%; /* Add this line */
+}
+.team-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: 30px;
+    height: 30px;
+}
+.team {
+    flex: 1;
+    max-width: 45%; /* reduce this value to create space for the team-icon */
+    margin: 0 5px; /* Add some margin to separate the buttons */
+    position: relative; /* Add this line */
+}
+.team button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Align items horizontally in the center */
+    align-items: center; /* Align items vertically in the center */
+    width: 100%;
+    height: 85px; /* Set a fixed height for the buttons */
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: lightgrey;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.team button:hover {
+    background-color: #ddd; /* Change this color as you see fit */
+}
+.team button.selected {
+    background-color: green;
+    color: #fcfbfb;
+}
+.confidence {
+    position: relative;
+    margin-bottom: 20px;
+    text-align: left;
+}
+.confidence-button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    background-color: #5ac6df; /* Change this to the pastel color */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    margin-right: 10px;
+}
+.confidence-button:hover {
+    background-color: #B0E0E6; /* Slightly lighter shade for hover effect */
+}
+.confidence-button.selected {
+    background-color: green;
+    color: #fcfbfb;
+    transform: scale(1.1);
+}
+.confidence-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+.tooltip-icon {
+    width: 14px;
+    height: 14px;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 400px;
+    background-color: #e0e0e0;
+    color: #000000;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; 
+    left: 50%;
+    margin-left: -150px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    border: 1px solid black;
+    font-size: 14px;
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+.submit-container {
+    display: flex;
+    justify-content: center;
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto; /* Center the container */
+}
+.submit-btn {
+    max-width: 960px;
+    width: 100%;
+    padding: 10px; /* Add this line */
+    border: none;
+    border-radius: 5px;
+    background-color: #ff0000;
+    color: #fcfbfb;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1.2em;
+    font-weight: bold;
+    align-self: center;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.submit-btn:hover {
+    background-color: darkred;
+}
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin: 10px auto; /* Center the container horizontally */
+    padding: 20px;
+    max-width: 960px;
+    width: 100%;
+}
+.required {
+    color: red;
+}
+.register-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.register-form label {
+    font-weight: bold;
+    align-self: flex-start;
+}
+
+.register-form input {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.register-form input[type="submit"] {
+    width: auto;
+    background-color: #ff0000;
+    color: #fcfbfb;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.register-form input[type="submit"]:hover {
+    background-color: darkred;
+}
+.login-title {
+    font-size: 2em; /* adjust as needed */
+    text-align: center;
+    margin-bottom: 10px; /* corrected */
+}
+
+.login-subtitle {
+    font-size: 1.5em; /* adjust as needed */
+    text-align: left;
+    margin-top: 0; /* remove margin */
+    margin-bottom: 0; /* add this line to remove bottom margin */
+}
+
+.create-account {
+    font-size: 0.8em; /* adjust as needed */
+    text-align: left;
+    margin-top: 0px; /* add margin */
+}
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* align items to the left */
+    width: 600px; /* add this line */
+    margin: 0 auto; /* add this line */
+}
+.login-form label {
+    font-weight: bold;
+    align-self: flex-start;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.login-form input[type="submit"] {
+    width: auto;
+    background-color: #ff0000;
+    color: #fcfbfb;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-form input[type="submit"]:hover {
+    background-color: darkred;
+}
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* corrected */
+    width: 600px; /* Set the width of the form container */
+    margin: 0 auto; /* Center the form container */
+}
+/* Add a media query for screens smaller than 600px */
+@media (max-width: 600px) {
+    header {
+        height: 60px;
+        padding: 0 10px;
+    }
+    .logo {
+        width: 45%; /* adjust this value as needed */
+    }
+    .login {
+        font-size: 16px;
+    }
+    .round-list {
+        padding: 0 20px;
+    }
+    .teams {
+        flex-direction: row; /* Keep the teams in a row */
+        flex-wrap: wrap; /* Allow the teams to wrap to a new line if necessary */
+        justify-content: space-between; /* Space the teams evenly */
+    }
+    .team {
+        width: 100%; /* Make the team buttons full width */
+        max-width: 50%; /* But don't let them take up more than half the row */
+        box-sizing: border-box; /* Include padding and border in element's total width and height */
+    }
+    .confidence-buttons {
+        flex-wrap: wrap; /* Allow the confidence buttons to wrap to a new line */
+        justify-content: space-around; /* Change the alignment of the confidence buttons */
+    }
+    .confidence-button {
+        margin-right: 0; /* Remove the right margin from the confidence buttons */
+        margin-bottom: 10px; /* Add a bottom margin to the confidence buttons */
+    }
+    .register-container {
+        padding: 10px;
+    }
+}
